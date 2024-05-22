@@ -1,24 +1,11 @@
 package com.educandoweb.course.config;
 
-import java.time.Instant;
-import java.util.Arrays;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
-import com.educandoweb.course.entities.Category;
-import com.educandoweb.course.entities.Order;
-import com.educandoweb.course.entities.OrderItem;
-import com.educandoweb.course.entities.Payment;
-import com.educandoweb.course.entities.Product;
 import com.educandoweb.course.entities.User;
-import com.educandoweb.course.entities.enums.OrderStatus;
-import com.educandoweb.course.repositories.CategoryRepository;
-import com.educandoweb.course.repositories.OrderItemRepository;
-import com.educandoweb.course.repositories.OrderRepository;
-import com.educandoweb.course.repositories.ProductRepository;
 import com.educandoweb.course.repositories.UserRepository;
 
 @Configuration
@@ -27,66 +14,20 @@ public class TestConfig implements CommandLineRunner {
 	
 	@Autowired
 	private UserRepository userRepository;
-	
-	@Autowired
-	private OrderRepository orderRepository;
-	
-	@Autowired
-	private CategoryRepository categoryRepository;
-	
-	@Autowired
-	private ProductRepository productRepository;
-	
-	@Autowired
-	private OrderItemRepository orderItemRepository;
 
 	@Override
 	public void run(String... args) throws Exception {
-		
-		Category cat1 = new Category(null, "Electronics");
-		Category cat2 = new Category(null, "Books");
-		Category cat3 = new Category(null, "Computers");
-		
-		Product p1 = new Product(null, "The Lord of the Rings", "Lorem ipsum dolor sit amet, consectetur.", 90.5, "");
-		Product p2 = new Product(null, "Smart TV", "Nulla eu imperdiet purus. Maecenas ante.", 2190.0, "");
-		Product p3 = new Product(null, "Macbook Pro", "Nam eleifend maximus tortor, at mollis.", 1250.0, "");
-		Product p4 = new Product(null, "PC Gamer", "Donec aliquet odio ac rhoncus cursus.", 1200.0, "");
-		Product p5 = new Product(null, "Rails for Dummies", "Cras fringilla convallis sem vel faucibus.", 100.99, ""); 
-
-		
-		categoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
-		productRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5));
-		
-		p1.getCategories().add(cat2);
-		p2.getCategories().add(cat1);
-		p2.getCategories().add(cat3);
-		p3.getCategories().add(cat3);
-		p4.getCategories().add(cat3);
-		p5.getCategories().add(cat2);
-		
-		productRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5));
-		
-		
-		User u1 = new User(null, "Maria Brown", "maria@gmail.com", "988888888", "123456");
-		User u2 = new User(null, "Alex Green", "alex@gmail.com", "977777777", "123456");
-		
-		Order o1 = new Order(null, Instant.parse("2019-06-20T19:53:07Z"), OrderStatus.PAID, u1);
-		Order o2 = new Order(null, Instant.parse("2019-07-21T03:42:10Z"), OrderStatus.WAITING_PAYMENT, u2);
-		Order o3 = new Order(null, Instant.parse("2019-07-22T15:21:22Z"), OrderStatus.WAITING_PAYMENT, u1);
-		
-		userRepository.saveAll(Arrays.asList(u1, u2));
-		orderRepository.saveAll(Arrays.asList(o1, o2, o3));
-		
-		OrderItem oi1 = new OrderItem(o1, p1, 2, p1.getPrice());
-		OrderItem oi2 = new OrderItem(o1, p3, 1, p3.getPrice());
-		OrderItem oi3 = new OrderItem(o2, p3, 2, p3.getPrice());
-		OrderItem oi4 = new OrderItem(o3, p5, 2, p5.getPrice()); 
-		
-		orderItemRepository.saveAll(Arrays.asList(oi1, oi2, oi3, oi4));
-		
-		Payment pay1 = new Payment(null, Instant.parse("2019-06-20T21:53:07Z"), o1);
-		o1.setPayment(pay1);
-		
-		orderRepository.save(o1);
+		User a1 = new User(1L, "Jett", "Duelista", "Representando a Coreia do Sul, sua terra natal, Jett tem um estilo de luta ágil e evasivo que permite que ela assuma riscos como ninguém. Ela corre em meio a qualquer confronto, cortando os inimigos antes mesmo que eles percebam quem ou o que os atingiu.");
+		User a2 = new User(2L, "Breach", "Iniciador", "Breach, o homem-biônico sueco, dispara poderosos jatos cinéticos para forçar a abertura de um caminho pelo território inimigo. O dano e a interrupção que ele causa garantem que nenhuma luta seja justa.");
+		User a3 = new User(3L, "Omen", "Controlador", "Omen, uma lembrança fantasmagórica, caça nas sombras. Ele cega os inimigos, teleporta-se pelo campo e deixa a paranoia assumir o controle enquanto o adversário tenta descobrir de onde virá seu próximo ataque.");
+		User a4 = new User(4L, "Brimstone", "Controlador", "Vindo diretamente dos EUA, o arsenal orbital de Brimstone garante que o esquadrão dele esteja sempre em vantagem. Sua capacidade de oferecer utilidade com precisão a distância faz dele um comandante inigualável na linha de frente.");
+		User a5 = new User(5L, "Phoenix", "Duelista", "Chegando com tudo diretamente do Reino Unido, o poder estelar de Phoenix reluz em seu estilo de luta, incendiando o campo de batalha com luz e estilo. Tendo ajuda ou não, ele entra na luta como e quando achar que deve.");
+		User a6 = new User(6L, "Sage", "Sentinela", "Como uma verdadeira fortaleza chinesa, Sage traz segurança para si mesma e para a equipe aonde quer que vá. Capaz de reviver aliados e rechaçar investidas agressivas, ela oferece um centro de calmaria em meio ao caos da batalha.");
+		User a7 = new User(7L, "Sova", "Iniciador", "Nascido sob o eterno inverno das tundras russas, Sova rastreia, encontra e elimina inimigos com eficiência e precisão implacáveis. Seu arco personalizado e suas habilidades inigualáveis de reconhecimento garantem que nenhuma presa escape.");
+		User a8 = new User(8L, "Viper", "Controlador", "Viper, a química dos Estados Unidos, emprega uma variedade de dispositivos químicos venenosos para controlar o campo de batalha e prejudicar a visão do inimigo. Se as toxinas não matarem a presa, seus jogos mentais certamente o farão.");
+		User a9 = new User(9L, "Clove", "Controlador", "Clove, ume encrenqueire da escócia, vai desorientar os inimigos tanto no calor do combate quanto no frio da Morte, Jovem e imortal, elu mantém os inimigos confusos até do além-túmulo: momentos após a morte, elu retorna a vida");
+		User a10 = new User(10L, "Raze", "Duelista", "Raze chega do Brasil em uma explosão de carisma e armas letais. Com seu estilo de jogo porradeiro, ela é craque em desentocar inimigos entrincheirados e limpar espaços apertados com uma bela dose de BUUUM!");
+		User a11 = new User(11L, "Cypher", "Sentinela", "Cypher, um vendedor de informações do Marrocos, é uma verdadeira rede de vigilância de um homem só que fica de olho em cada movimento dos inimigos. Nenhum segredo está a salvo. Nenhuma manobra passa despercebida. Cypher está sempre vigiando.");
+		User a12 = new User(12L, "Killjoy", "Sentinela", "Killjoy, uma alemã genial, defende o campo de batalha facilmente usando seu arsenal de invenções. Se o dano causado por seu equipamento não der cabo dos inimigos, os efeitos negativos de seus queridos robôs dão conta do recado.");
 	}
 }
