@@ -1,5 +1,7 @@
 package com.educandoweb.course.config;
 
+import java.util.Arrays;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
@@ -29,5 +31,7 @@ public class TestConfig implements CommandLineRunner {
 		User a10 = new User(10L, "Raze", "Duelista", "Raze chega do Brasil em uma explosão de carisma e armas letais. Com seu estilo de jogo porradeiro, ela é craque em desentocar inimigos entrincheirados e limpar espaços apertados com uma bela dose de BUUUM!");
 		User a11 = new User(11L, "Cypher", "Sentinela", "Cypher, um vendedor de informações do Marrocos, é uma verdadeira rede de vigilância de um homem só que fica de olho em cada movimento dos inimigos. Nenhum segredo está a salvo. Nenhuma manobra passa despercebida. Cypher está sempre vigiando.");
 		User a12 = new User(12L, "Killjoy", "Sentinela", "Killjoy, uma alemã genial, defende o campo de batalha facilmente usando seu arsenal de invenções. Se o dano causado por seu equipamento não der cabo dos inimigos, os efeitos negativos de seus queridos robôs dão conta do recado.");
+		
+		userRepository.saveAll(Arrays.asList(a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12 ));
 	}
 }
